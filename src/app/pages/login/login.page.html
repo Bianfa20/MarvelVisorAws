@@ -1,0 +1,47 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content color="primary">
+
+  <ion-img src="../../../assets/marvel_logo.png"></ion-img>
+
+  <ion-list>    
+
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+  <div class="ion-padding ion-text-center">
+    <ion-button color="medium" expand="block" (click)="login()">Iniciar sesión</ion-button>
+    <ion-text>
+      <h6>O bien</h6>
+    </ion-text>
+    <ion-button color="google" expand="block" (click)="loginWithGoogle()">Continuar con Google</ion-button>
+    <ion-button color="facebook" expand="block">Continuar con Facebook</ion-button>
+  </div>
+
+  <div id="logupContent" class="ion-text-end ion-margin-end">
+    <a id="logup" (click)="toLogup()">Registrarse</a>
+  </div>
+
+  <div class="saver" *ngIf="loguedIn"></div>
+
+  <ion-card id="loader" *ngIf="loguedIn">
+    <img src="../../../assets/loader.gif" alt="">
+    <ion-card-content class="ion-text-center">
+      <ion-text color="dark">Iniciando sesión</ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

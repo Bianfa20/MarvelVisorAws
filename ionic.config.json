@@ -1,0 +1,8 @@
+{
+  "name": "MarvelVisor",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar color="primary">
+
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-img src="../../../assets/marvel_logo.png"></ion-img>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-title class="ion-text-center">Visor de comics</ion-title>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-buttons slot="end">
+            <ion-menu-button menu="mainMenu"></ion-menu-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="interval > 0">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6" *ngFor="let comic of availableComics;">
+                    <div class="ion-text-center">
+                        <ion-card>
+                            <img [src]="createLink(comic.thumbnail.path, comic.thumbnail.extension)" (click)="showDetail(comic)">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-button [color]="comic.like == 1 ? 'facebook' : 'primary'" (click)="like(comic)" size="small" (click)="like(comic.id)">
+                                        <ion-icon name="thumbs-up"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-button [color]="comic.like == 2 ? 'danger' : 'primary'" (click)="dislike(comic)" size="small" (click)="dislike(comic.title)">
+                                        <ion-icon name="thumbs-down"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card>
+                        <ion-text color="dark">
+                            <p style="font-weight: 700;">{{ comic.variantDescription ? comic.variantDescription : comic.title }}</p>
+                        </ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="6">
+                <ion-segment (ionChange)="loadMoreComics($event)">
+                    <ion-segment-button value="1" checked>
+                        <ion-label>1</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button *ngFor="let number of counter(); let range = index" [value]="range+2">
+                        <ion-label>{{ range+2 }}</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="interval == 0" class="ion-text-center">
+        <ion-img id="comicsLoader" src="../../../assets/loader.gif" alt=""></ion-img>
+        <ion-text>Cargando</ion-text>
+    </div>
+</ion-content>
+
+
+
