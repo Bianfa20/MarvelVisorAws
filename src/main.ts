@@ -5,6 +5,10 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
 defineCustomElements(window);
 
 if (environment.production) {

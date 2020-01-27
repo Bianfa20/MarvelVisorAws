@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-marvelvisor-dev-140948-authRole",
+            "UnauthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-140948-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-140948-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-marvelvisor-dev-140948-deployment",
+            "UnauthRoleName": "amplify-marvelvisor-dev-140948-unauthRole",
+            "StackName": "amplify-marvelvisor-dev-140948",
+            "StackId": "arn:aws:cloudformation:us-east-2:280825150766:stack/amplify-marvelvisor-dev-140948/96f7fcf0-4138-11ea-9ffa-066dd16eed5a",
+            "AmplifyAppId": "dui1x36ephsaz"
+        },
+        "categories": {
+            "auth": {
+                "marvelvisor50d165d9": {}
+            }
+        }
+    }
+}

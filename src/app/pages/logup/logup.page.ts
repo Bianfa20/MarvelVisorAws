@@ -65,29 +65,30 @@ export class LogupPage implements OnInit {
   }
 
   saveData() {
-    if(this.username != "" && this.email != "" && this.password != "" && this.passwordC != ""){
-      if(this.password.length > 5){
-        if(this.password == this.passwordC){
-          if(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(this.email)){
-            this.upperState();
-            this.picture ? this.upperState() : 1;
-            this.message = "Datos guardado."
-          }else{
-            this.message = "Correo invalido."
+    if (this.username !== '' && this.email !== '' && this.password !== '' && this.passwordC !== '') {
+      if (this.password.length > 5) {
+        if (this.password === this.passwordC) {
+          if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(this.email)){
+            //this.upperState();
+            this.authService.createUser(this.email, this.password, this.username);
+            //this.picture ? this.upperState() : console.log('La foto no existe');
+            this.message = 'Datos guardado.';
+          } else {
+            this.message = 'Correo invalido.';
           }
-        }else{
-          this.message = "Las contraseñas no coinciden."
+        } else {
+          this.message = 'Las contraseñas no coinciden.';
         }
-      }else{
-        this.message = "La contraseña debe tener minimo 6 caracteres."
+      } else {
+        this.message = 'La contraseña debe tener minimo 6 caracteres.';
       }
-    }else{
-      this.message = "No debe haber campos vacios."
+    } else {
+      this.message = 'No debe haber campos vacios.';
     }
   }
 
   createUser() {
-    this.loader = true;
+    /* this.loader = true;
     this.authService.createUser(this.username, this.email, this.password).then(res=>{
       switch(res["code"]){
 
@@ -120,7 +121,7 @@ export class LogupPage implements OnInit {
           break;
 
       }
-    })    
+    })   */  
   }
 
  async showToast(message: string) {

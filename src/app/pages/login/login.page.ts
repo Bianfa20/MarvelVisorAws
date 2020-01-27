@@ -17,47 +17,47 @@ export class LoginPage implements OnInit {
 
   constructor( private navCtrl: NavController, private authService: AuthService, private menuCtrl: MenuController ) {
     this.loguedIn = false;
-    this.email, this.password = "";
-   }
+    this.email, this.password = '';
+  }
 
   ngOnInit() {
   }
 
-  login(){
-    if(this.email != "" && this.password != ""){
+  login() {
+    if (this.email !== '' && this.password !== '') {
       this.loguedIn = true;
       this.authService.login(this.email, this.password).then(res=>{
         this.loguedIn = false;
-        switch(res["code"]){
+        switch(res["code"]) {
 
-          case "loggedIn":
-            this.menuCtrl.enable(true);
-            this.navCtrl.navigateRoot("/home");
+          case 'loggedIn':
+            this.showToast('logueado');
             break;
 
-          case "auth/user-not-found":
+          case 'UserNotConfirmedException':
+            this.showToast('Debe confirmar la cuenta primero');
+            break;
+
+          case 'UserNotFoundException':
             this.showToast('Este correo no se encuentra registrado');
             break;
 
-          case "auth/invalid-email":
-            this.showToast('Correo no valido');
-            break;
-
-          default: 
+          case 'NotAuthorizedException':
             this.showToast('Contraseña incorrecta');
             break;
+
         }
-      })
-    }else{
+      });
+    } else {
       this.showToast('No debe haber campos vacios');
-    }     
+    }
   }
 
-  toLogup(){
-    this.navCtrl.navigateRoot("/logup");
+  toLogup() {
+    this.navCtrl.navigateRoot('/logup');
   }
 
-  loginWithGoogle(){
+  loginWithGoogle() {
     this.showToast('Aun no funciona');
   }
 

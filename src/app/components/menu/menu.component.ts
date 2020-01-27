@@ -12,32 +12,25 @@ const { Toast } = Plugins;
 })
 export class MenuComponent implements OnInit {
 
-  constructor( private authService: AuthService, private navCtrl: NavController, private menuCtrl: MenuController, private storage: Storage ) { }
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private menuCtrl: MenuController,
+    private storage: Storage
+  ) { }
 
   ngOnInit() {}
 
-  logout(){
-    this.menuCtrl.toggle().then(()=>{
-      this.menuCtrl.enable(false).then(()=>{
-        this.authService.logout();
-        this.clearDataBase();
-        this.navCtrl.navigateRoot("/login");        
-      })
-    })
+  logout() {
+    console.log('Prueba cerrar sesión')
   }
 
-  deleteUser(){
-    this.authService.deleteUser().then(()=>{
-      this.menuCtrl.enable(false).then(()=>{
-        this.clearDataBase();
-        this.navCtrl.navigateRoot("/login"); 
-        this.showToast("Usuario eliminado exitosamente")
-      })           
-    })
+  deleteUser() {
+    console.log('Prueba eliminar usuario')
   }
 
-  clearDataBase(){
-    this.storage.clear();
+  clearDataBase() {
+    console.log('limpiando base de datos')
   }
 
   async showToast(message: string) {

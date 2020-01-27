@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"marvelvisor50d165d9": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
