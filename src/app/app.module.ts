@@ -15,6 +15,7 @@ import Auth from '@aws-amplify/auth';
 
 // Plugins
 import { IonicStorageModule } from '@ionic/storage';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 // Providers
 import { ComicsService } from './providers/comics/comics.service';
@@ -44,6 +45,7 @@ import { StorageService } from './providers/storage/storage.service';
         });
       }
     },
+    Facebook,
     AuthService,
     StorageService,
     ComicsService,

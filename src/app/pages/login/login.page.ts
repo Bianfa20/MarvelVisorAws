@@ -66,6 +66,10 @@ export class LoginPage implements OnInit {
     this.showToast('no funciona');
   }
 
+  loginWithFacebook() {
+    this.authService.loginWithFacebook();
+  }
+
   async showToast(message: string) {
     await Toast.show({
       text: message
