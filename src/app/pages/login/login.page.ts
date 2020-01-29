@@ -15,7 +15,11 @@ export class LoginPage implements OnInit {
   password: string;
   loguedIn: boolean;
 
-  constructor( private navCtrl: NavController, private authService: AuthService, private menuCtrl: MenuController ) {
+  constructor(
+    private navCtrl: NavController,
+    private authService: AuthService,
+    private menuCtrl: MenuController 
+  ) {
     this.loguedIn = false;
     this.email, this.password = '';
   }
@@ -58,7 +62,8 @@ export class LoginPage implements OnInit {
   }
 
   loginWithGoogle() {
-    this.showToast('Aun no funciona');
+    // this.authService.loginWithGoogle();
+    this.showToast('no funciona');
   }
 
   async showToast(message: string) {

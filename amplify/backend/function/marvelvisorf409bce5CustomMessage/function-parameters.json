@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "verification-link"
+    ],
+    "parentResource": "marvelvisorf409bce5",
+    "functionName": "marvelvisorf409bce5CustomMessage",
+    "parentStack": "auth",
+    "triggerEnvs": "[{\"key\":\"RESOURCENAME\",\"value\":\"resourceName\"}]",
+    "triggerTemplate": "CustomMessage.json.ejs",
+    "roleName": "marvelvisorf409bce5CustomMessage",
+    "skipEdit": true,
+    "resourceName": "marvelvisorf409bce5CustomMessage"
+}

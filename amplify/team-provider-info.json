@@ -12,8 +12,17 @@
             "AmplifyAppId": "dui1x36ephsaz"
         },
         "categories": {
+            "function": {
+                "marvelvisorf409bce5CustomMessage": {
+                    "REDIRECTURL": "",
+                    "EMAILSUBJECT": "",
+                    "EMAILMESSAGE": ""
+                }
+            },
             "auth": {
-                "marvelvisor50d165d9": {}
+                "marvelvisorf409bce5": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"801087540403844\",\"client_secret\":\"44b2396659a61125472b9fe7bf8e8634\"},{\"ProviderName\":\"Google\",\"client_id\":\"204426299781-e6inuu1lp1mr4kfsjndcf56pe8cri2sr.apps.googleusercontent.com\",\"client_secret\":\"IEd4kPexqjtR0eLbvzPWrQLJ\"}]"
+                }
             }
         }
     }

@@ -24,9 +24,17 @@ import { StorageService } from './providers/storage/storage.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [ComponentsModule, HttpClientModule, IonicStorageModule.forRoot({
-    name: 'marvel_visor'
-  }), BrowserModule, IonicModule.forRoot(), AppRoutingModule, AmplifyAngularModule],
+  imports: [
+    ComponentsModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      name: 'marvel_visor'
+    }),
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AmplifyAngularModule
+  ],
   providers: [
     {
       provide: AmplifyService,
