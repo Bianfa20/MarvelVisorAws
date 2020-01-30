@@ -35,11 +35,12 @@ export class LoginPage implements OnInit {
         switch(res["code"]) {
 
           case 'loggedIn':
-            this.showToast('logueado');
+            this.menuCtrl.enable(true);
+            this.navCtrl.navigateRoot('/home');
             break;
 
           case 'UserNotConfirmedException':
-            this.showToast('Debe confirmar la cuenta primero');
+            this.showToast('Debe confirmar la cuenta primero, revisa tu correo');
             break;
 
           case 'UserNotFoundException':
@@ -62,8 +63,8 @@ export class LoginPage implements OnInit {
   }
 
   loginWithGoogle() {
-    // this.authService.loginWithGoogle();
-    this.showToast('no funciona');
+    this.authService.loginWithGoogle();
+    // this.showToast('no funciona');
   }
 
   loginWithFacebook() {

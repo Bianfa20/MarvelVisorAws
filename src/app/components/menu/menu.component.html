@@ -2,19 +2,18 @@
   <ion-header>
     <ion-toolbar color="primary">
       <ion-avatar class="ion-margin-start">
-        
+        <ion-img [src]="authService.user.picture"></ion-img>
       </ion-avatar>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item></ion-item>
-      <ion-item></ion-item>    
+      <ion-item>{{ authService.user.name }}</ion-item>
+      <ion-item>{{ authService.user.email }}</ion-item>    
     </ion-list>
     
     <div class="ion-text-center ion-margin-top">
       <ion-button shape="round" (click)="logout()">Cerrar sesion</ion-button>
-      <ion-button shape="round" color="danger" (click)="deleteUser()">Eliminar cuenta</ion-button>
     </div>
 
   </ion-content>

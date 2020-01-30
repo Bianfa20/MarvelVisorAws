@@ -22,15 +22,18 @@ export class MenuComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    console.log('Prueba cerrar sesión')
-  }
-
-  deleteUser() {
-    console.log('Prueba eliminar usuario')
+    this.menuCtrl.toggle().then(() => {
+      this.menuCtrl.enable(false).then(() => {
+        this.authService.logout();
+        this.clearDataBase();
+        this.navCtrl.navigateRoot('/login');
+        this.showToast('Sesión cerrada exitosamente');
+      });
+    });
   }
 
   clearDataBase() {
-    console.log('limpiando base de datos')
+    this.storage.clear();
   }
 
   async showToast(message: string) {

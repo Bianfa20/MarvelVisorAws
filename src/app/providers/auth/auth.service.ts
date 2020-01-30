@@ -17,15 +17,35 @@ export class AuthService {
     private amplifyService: AmplifyService,
     private storage: Storage
   ) {
+    
+    this.initUser();
+
+    this.storage.get('user').then(user => {
+      user ? this.user = JSON.parse(user) : this.initUser();
+    });
 
     this.amplifyService.authStateChange$.subscribe(authState => {
-      console.log(JSON.stringify(authState.user));
+      if (authState.user !== null){
+        this.user = authState.user.attributes;
+        this.storage.set('user', JSON.stringify(authState.user.attributes));
+      } else {
+        this.initUser();
+        this.storage.remove('user');
+      }
     });
 
   }
 
+  initUser() {
+    this.user = {
+      displayName: null,
+      email: null,
+      photoURL: ''
+    };
+  }
+
   login(email, clave) {
-    
+
     return new Promise((resolve, reject)=>{
       Auth.signIn({
         username: email,
@@ -37,27 +57,24 @@ export class AuthService {
   }
 
   loginWithGoogle() {
-    /* Auth.federatedSignIn({
+    Auth.federatedSignIn({
       provider: CognitoHostedUIIdentityProvider.Google
     }).then(res => {})
-      .catch(err => {}); */
+      .catch(err => {});
   }
 
   loginWithFacebook() {
     this.fb.login(['public_profile', 'email']).then((loginres: FacebookLoginResponse) => {
       if (loginres.status === 'connected') {
-        this.fb.api('/me?fields=name,email', []).then((profileres: any) => {
+        this.fb.api('/me?fields=name,email', ['public_profile', 'email']).then((profileres: any) => {
           const federatedUser: FederatedUser = {
             name: profileres.name,
             email: profileres.email
           };
           const facebookResponse: FederatedResponse = {
             token: loginres.authResponse.accessToken,
-            expires_at: loginres.authResponse.expiresIn * 1000 + Date.now()
+            expires_at: loginres.authResponse.expiresIn * 1000 + new Date().getTime()
           };
-          if (!facebookResponse.token) {
-            return;
-          }
           Auth.federatedSignIn('facebook', facebookResponse, federatedUser )
               .then(() => {
                 /* Auth.currentAuthenticatedUser().then(currentUser => {
@@ -74,20 +91,24 @@ export class AuthService {
   }
 
   createUser(email, clave, username){
-    Auth.signUp({
-      username: email,
-      password: clave,
-      attributes: {
-        name: username,
-        picture: ''
-      }
-    }).then(data=>console.log(data))
-      .catch(err=>console.log(err));
+    return new Promise((resolve, reject) => {
+      Auth.signUp({
+        username: email,
+        password: clave,
+        attributes: {
+          name: username,
+          picture: 'https://www.simplifai.ai/wp-content/uploads/2019/06/blank-profile-picture-973460_960_720-400x400.png'
+        }
+      }).then(data => {
+        Auth.resendSignUp(email).then(() => {
+          resolve({code: 'loggedIn'});
+        }).catch(err => console.log(err));
+      }).catch(err => resolve(err));
+    });
+  }
 
-    /* Auth.resendSignUp(email).then(()=>{
-      console.log('Codigo envido exitosamente');
-    }).catch(err=>console.log(err)) */
-    
+  logout() {
+    Auth.signOut();
   }
 
 }

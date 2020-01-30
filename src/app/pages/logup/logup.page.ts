@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource, CameraDirection } from '@capacitor/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AuthService } from '../../providers/auth/auth.service';
@@ -24,16 +24,23 @@ export class LogupPage implements OnInit {
   message: string;
   loader: boolean;
 
-  constructor( private navCtrl: NavController, private storage: Storage, private sanitizer: DomSanitizer, private authService: AuthService, private storageService: StorageService ) { 
+  constructor( 
+    private navCtrl: NavController,
+    private storage: Storage,
+    private sanitizer: DomSanitizer,
+    private authService: AuthService,
+    private storageService: StorageService,
+    private menuCtrl: MenuController
+  ) {
     this.stateOne = 0;
-    this.username, this.email, this.password, this.passwordC = "";
+    this.username, this.email, this.password, this.passwordC = '';
   }
 
   ngOnInit() {
   }
 
   backToLogin(){
-    this.navCtrl.navigateBack("/login");
+    this.navCtrl.navigateBack('/login');
   }
 
   upperState(){
@@ -66,62 +73,35 @@ export class LogupPage implements OnInit {
 
   saveData() {
     if (this.username !== '' && this.email !== '' && this.password !== '' && this.passwordC !== '') {
-      if (this.password.length > 5) {
-        if (this.password === this.passwordC) {
-          if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(this.email)){
-            //this.upperState();
-            this.authService.createUser(this.email, this.password, this.username);
-            //this.picture ? this.upperState() : console.log('La foto no existe');
-            this.message = 'Datos guardado.';
-          } else {
-            this.message = 'Correo invalido.';
+      if (this.password === this.passwordC) {
+        this.authService.createUser(this.email, this.password, this.username).then(res => {
+          switch(res['code']) {
+            
+            case 'loggedIn':
+              this.navCtrl.navigateBack('/login');
+              this.showToast('Usuario registrado exitosamente');
+              break;
+  
+            case 'InvalidParameterException':
+              this.message = 'Correo invalido.';
+              break;
+
+            case 'UsernameExistsException':
+              this.message = 'Este correo ya se encuentra registrado.';
+              break;
+
+            case 'InvalidPasswordException':
+              this.message = 'La contraseña debe ser mayor a 6 caracteres.';
+              break;
+  
           }
-        } else {
-          this.message = 'Las contraseñas no coinciden.';
-        }
+        });
       } else {
-        this.message = 'La contraseña debe tener minimo 6 caracteres.';
+        this.message = 'Contraseñas no coinciden.'
       }
     } else {
       this.message = 'No debe haber campos vacios.';
     }
-  }
-
-  createUser() {
-    /* this.loader = true;
-    this.authService.createUser(this.username, this.email, this.password).then(res=>{
-      switch(res["code"]){
-
-        case "":
-          this.storage.set('registering', true);
-          this.storageService.uploadPicture(this.username, this.picture64).then(url=>{
-            this.loader = false;
-            if(url){
-              this.authService.linkPicture(url+"");
-              this.showToast("Registrado exitosamente")
-            }else{
-              this.authService.deleteUser();
-              this.showToast("No se pude registrar")
-            }            
-            this.navCtrl.navigateBack("/login");
-          });          
-          break;
-
-        case "auth/email-already-in-use":
-          this.loader = false;
-          this.stateOne = 0;
-          this.message = "Este correo ya esta en uso."
-          break;
-
-        default:
-          this.loader = false;
-          this.authService.deleteUser();
-          this.showToast("No se pudo registrar")
-          this.navCtrl.navigateBack("/login");
-          break;
-
-      }
-    })   */  
   }
 
  async showToast(message: string) {
