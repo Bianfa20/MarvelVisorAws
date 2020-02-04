@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private authService: AuthService,
-    private menuCtrl: MenuController 
+    private menuCtrl: MenuController
   ) {
     this.loguedIn = false;
     this.email, this.password = '';

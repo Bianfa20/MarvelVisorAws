@@ -5,8 +5,8 @@
     "javascript": {
         "framework": "ionic",
         "config": {
-            "SourceDir": "./src",
-            "DistributionDir": "./www",
+            "SourceDir": "src",
+            "DistributionDir": "www",
             "BuildCommand": "ng build",
             "StartCommand": "ionic serve"
         }

@@ -1,28 +1,26 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-marvelvisor-dev-140948-authRole",
-            "UnauthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-140948-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-140948-authRole",
+            "AuthRoleName": "amplify-marvelvisor-dev-141939-authRole",
+            "UnauthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-141939-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::280825150766:role/amplify-marvelvisor-dev-141939-authRole",
             "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-marvelvisor-dev-140948-deployment",
-            "UnauthRoleName": "amplify-marvelvisor-dev-140948-unauthRole",
-            "StackName": "amplify-marvelvisor-dev-140948",
-            "StackId": "arn:aws:cloudformation:us-east-2:280825150766:stack/amplify-marvelvisor-dev-140948/96f7fcf0-4138-11ea-9ffa-066dd16eed5a",
-            "AmplifyAppId": "dui1x36ephsaz"
+            "DeploymentBucketName": "amplify-marvelvisor-dev-141939-deployment",
+            "UnauthRoleName": "amplify-marvelvisor-dev-141939-unauthRole",
+            "StackName": "amplify-marvelvisor-dev-141939",
+            "StackId": "arn:aws:cloudformation:us-east-2:280825150766:stack/amplify-marvelvisor-dev-141939/3f9727a0-4783-11ea-a6a8-06faea3c34dc",
+            "AmplifyAppId": "d78gcal4s21tk"
         },
         "categories": {
             "function": {
-                "marvelvisorf409bce5CustomMessage": {
+                "marvelvisor0f309455CustomMessage": {
                     "REDIRECTURL": "",
                     "EMAILSUBJECT": "",
                     "EMAILMESSAGE": ""
                 }
             },
             "auth": {
-                "marvelvisorf409bce5": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"801087540403844\",\"client_secret\":\"44b2396659a61125472b9fe7bf8e8634\"},{\"ProviderName\":\"Google\",\"client_id\":\"204426299781-e6inuu1lp1mr4kfsjndcf56pe8cri2sr.apps.googleusercontent.com\",\"client_secret\":\"IEd4kPexqjtR0eLbvzPWrQLJ\"}]"
-                }
+                "marvelvisor44f458d4": {}
             }
         }
     }

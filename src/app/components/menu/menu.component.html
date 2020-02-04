@@ -2,7 +2,7 @@
   <ion-header>
     <ion-toolbar color="primary">
       <ion-avatar class="ion-margin-start">
-        <ion-img [src]="authService.user.picture"></ion-img>
+        <ion-img [src]="authService.user ? authService.user.picture : ''"></ion-img>
       </ion-avatar>
     </ion-toolbar>
   </ion-header>

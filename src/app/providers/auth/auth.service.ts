@@ -25,9 +25,9 @@ export class AuthService {
     });
 
     this.amplifyService.authStateChange$.subscribe(authState => {
-      if (authState.user !== null){
+      if (authState.user !== null) {
         this.user = authState.user.attributes;
-        this.storage.set('user', JSON.stringify(authState.user.attributes));
+        this.storage.set('user', JSON.stringify(this.user));
       } else {
         this.initUser();
         this.storage.remove('user');
@@ -38,9 +38,9 @@ export class AuthService {
 
   initUser() {
     this.user = {
-      displayName: null,
+      name: null,
       email: null,
-      photoURL: ''
+      picture: ''
     };
   }
 
@@ -99,10 +99,9 @@ export class AuthService {
           name: username,
           picture: 'https://www.simplifai.ai/wp-content/uploads/2019/06/blank-profile-picture-973460_960_720-400x400.png'
         }
-      }).then(data => {
-        Auth.resendSignUp(email).then(() => {
-          resolve({code: 'loggedIn'});
-        }).catch(err => console.log(err));
+      }).then(() => {
+        this.logout();
+        resolve({code: 'loggedIn'});
       }).catch(err => resolve(err));
     });
   }

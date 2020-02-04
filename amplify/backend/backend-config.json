@@ -1,26 +1,16 @@
 {
-	"auth": {
-		"marvelvisorf409bce5": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "marvelvisorf409bce5CustomMessage",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				}
-			]
-		}
-	},
 	"function": {
-		"marvelvisorf409bce5CustomMessage": {
+		"marvelvisor0f309455CustomMessage": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true
+		}
+	},
+	"auth": {
+		"marvelvisor44f458d4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	}
 }

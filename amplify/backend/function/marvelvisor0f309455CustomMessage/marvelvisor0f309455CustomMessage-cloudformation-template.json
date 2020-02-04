@@ -69,12 +69,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"marvelvisorf409bce5CustomMessage",
+						"marvelvisor0f309455CustomMessage",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"marvelvisorf409bce5CustomMessage",
+									"marvelvisor0f309455CustomMessage",
 									"-",
 									{
 										"Ref": "env"
@@ -118,8 +118,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-marvelvisor-dev-140948-deployment",
-					"S3Key": "amplify-builds/marvelvisorf409bce5CustomMessage-31463134314434527a67-build.zip"
+					"S3Bucket": "amplify-marvelvisor-dev-141939-deployment",
+					"S3Key": "amplify-builds/marvelvisor0f309455CustomMessage-42494473386f54536270-build.zip"
 				}
 			}
 		},
@@ -129,12 +129,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"marvelvisorf409bce5CustomMessage",
+						"marvelvisor0f309455CustomMessage",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"marvelvisorf409bce5CustomMessage",
+									"marvelvisor0f309455CustomMessage",
 									"-",
 									{
 										"Ref": "env"

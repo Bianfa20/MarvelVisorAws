@@ -3,12 +3,12 @@
     "modules": [
         "verification-link"
     ],
-    "parentResource": "marvelvisorf409bce5",
-    "functionName": "marvelvisorf409bce5CustomMessage",
+    "parentResource": "marvelvisor0f309455",
+    "functionName": "marvelvisor0f309455CustomMessage",
     "parentStack": "auth",
     "triggerEnvs": "[{\"key\":\"RESOURCENAME\",\"value\":\"resourceName\"}]",
     "triggerTemplate": "CustomMessage.json.ejs",
-    "roleName": "marvelvisorf409bce5CustomMessage",
+    "roleName": "marvelvisor0f309455CustomMessage",
     "skipEdit": true,
-    "resourceName": "marvelvisorf409bce5CustomMessage"
+    "resourceName": "marvelvisor0f309455CustomMessage"
 }

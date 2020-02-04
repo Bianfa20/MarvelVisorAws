@@ -54,7 +54,7 @@ export class LogupPage implements OnInit {
   async takePicture(flag) {
 
     this.loader = true;
-    
+
     await Plugins.Camera.getPhoto({
       quality: 60,
       allowEditing: false,
@@ -62,8 +62,8 @@ export class LogupPage implements OnInit {
       direction: CameraDirection.Front,
       source: flag ? CameraSource.Camera : CameraSource.Photos,
       correctOrientation: true
-    }).then(image=>{      
-      this.picture = 'data:image/jpeg;base64,'+image.base64String;
+    }).then(image => {
+      this.picture = 'data:image/jpeg;base64,' + image.base64String;
       this.picture64 = image.base64String;
       this.loader = false;
       this.upperState();
@@ -72,16 +72,18 @@ export class LogupPage implements OnInit {
   }
 
   saveData() {
+    this.loader = true;
     if (this.username !== '' && this.email !== '' && this.password !== '' && this.passwordC !== '') {
       if (this.password === this.passwordC) {
         this.authService.createUser(this.email, this.password, this.username).then(res => {
-          switch(res['code']) {
-            
+          this.loader = false;
+          switch (res['code']) {
+
             case 'loggedIn':
               this.navCtrl.navigateBack('/login');
               this.showToast('Usuario registrado exitosamente');
               break;
-  
+
             case 'InvalidParameterException':
               this.message = 'Correo invalido.';
               break;
@@ -93,11 +95,11 @@ export class LogupPage implements OnInit {
             case 'InvalidPasswordException':
               this.message = 'La contraseña debe ser mayor a 6 caracteres.';
               break;
-  
+
           }
         });
       } else {
-        this.message = 'Contraseñas no coinciden.'
+        this.message = 'Contraseñas no coinciden.';
       }
     } else {
       this.message = 'No debe haber campos vacios.';
